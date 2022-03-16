@@ -99,18 +99,9 @@
 // function to add points:
 // let points = 0 , eventlistener onclick of submit if answer is correct points + 5 else display try again
 // create display box for correct or incorrect with hide and remove hide on submit if answer is correct or incorrect
-var addPoints = document.getElementById('points').innerHTML;
+// var addPoints = document.getElementById('points').innerHTML;
 let pointTotal = 0;
-function keepScore() {
-    addPoints.pointTotal+5
-    nextButton.addEventListener('click', () => {
-        if (answer.correct) {
-            keepScore
-        }else{
-            return('Try Again')
-        }
-    }
-    )}
+const addPoints = 5;
 
 
 //grab start button
@@ -122,9 +113,15 @@ const questionContainer = document.getElementById('question-container');
 // need grab question element 
 const questionElement = document.getElementById('question')
 
-const restartButton = document.getElementById('restart-button');
+const restartButton = document.getElementById('restart-butt');
 //need grab answer button
 const answerButtonsElement = document.getElementById('answer-buttons')
+
+const wiseAnswer = document.getElementById('wise');
+
+const pointContainer = document.getElementById('point-container');
+
+// let answer = document.getElementById('answer');
 
 // global variables, so they can be accessed anywhere in script
 let shuffleQuestions, currentQuestionIndex
@@ -139,11 +136,14 @@ nextButton.addEventListener('click', () => {
    currentQuestionIndex++
     bringNextQuestion()
 })
+
 function startGame() {
 // console.log('im clicked')
 // hide start button after clicked
+pointTotal = 0;
 startButton.classList.add('hide');
 nextButton.classList.add('hide');
+restartButton.classList.add('hide');
 
 
 // how to shuffle questions by grabbing question array
@@ -177,7 +177,9 @@ question.answers.forEach(answer => {
         button.dataset.correct=answer.correct
     }
     button.addEventListener('click', selectAnswer)
-    answerButtonsElement.appendChild(button)
+    answerButtonsElement.appendChild(button) 
+    addPoints
+    
 })
 }
 function resetQuestion() {
@@ -209,6 +211,20 @@ if (shuffleQuestions.length > currentQuestionIndex + 1) {
 }
 nextButton.classList.remove('hide')
 }
+// if (anwser.correct === true) {
+//     pointTotal+5
+// }
+// function keepScore() {
+//     addPoints.pointTotal+5
+//     nextButton.addEventListener('click', () => {
+//         if (answer.correct) {
+//             keepScore
+//         }else{
+//             return('Try Again')
+//         }
+//     }
+//     )}
+
 // is the element correct if yes correct else wrong
 function setStatusClass(element, correct) {
     clearStatusClass(element)
@@ -222,6 +238,19 @@ function clearStatusClass(element) {
     element.classList.remove('correct')
     element.classList.remove('wrong')
 }
+
+function pointAdder(element, correct) {
+document.getElementById('point-container').innerHTML = pointTotal + 5
+}
+wiseAnswer.addEventListener('click', () => {
+    if (wiseAnswer.dataset = wiseAnswer.dataset.correct) {
+pointAdder ()
+    }else{
+//        wiseAnswer.addEventListener('click',function (event) => {
+// event.preventDefault()
+//        })
+    }
+})
 // array of questions with array of anwsers for each question
 const questions = [
     {
@@ -249,12 +278,12 @@ const questions = [
         {text: 'Harry Kim', correct: false}
     ]
 },
-{    question: "In 'The Next Generation' who is second in command? ",
+{    question: "Beverly Crusher's role on the ship is: ",
         answers: [
-            {text: 'Jordie Laforge', correct: false},
-            {text: 'William Riker', correct: true},
-            {text: 'Deanna Troy', correct: false},
-            {text: 'Tuvak', correct: false}
+            {text: 'Athletic Trainer', correct: false},
+            {text: 'Doctor', correct: true},
+            {text: 'Navigational Officer', correct: false},
+            {text: 'Tactical Officer', correct: false}
         ]
     },
     {    question: "In 'The Next Generation' episode 'Time's Arrow', what famous writer does the team encounter?",
@@ -300,10 +329,10 @@ answers: [
 // fix this question noonian soong
 {    question: "In 'The Next Generation' who is Data's creator?",
 answers: [
-    {text: 'George RR Martin', correct: false},
-    {text: 'Ta-Nehisi Coates', correct: false},
-    {text: 'Fyodor Dostoevsky', correct: false},
-    {text: 'Mark Twain', correct: true}
+    {text: 'The Ferengi', correct: false},
+    {text: 'Kahn!', correct: false},
+    {text: 'Doogie Houzer Md', correct: false},
+    {text: 'Dr. Noonien Soong', correct: true}
 ]
-},
+}
 ]

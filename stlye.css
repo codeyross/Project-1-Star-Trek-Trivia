@@ -92,7 +92,12 @@ h2 {
     display: flexbox;
     justify-content: top;
 }
-
+.correct{
+    background-color: green;
+}
+.wrong {
+    background-color: red;
+}
 /* Set up border box to make width and height easier to style
 style body remove padding and margin
 make quiz center with display flex, justify center align center

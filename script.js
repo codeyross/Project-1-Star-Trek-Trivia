@@ -100,8 +100,8 @@
 // let points = 0 , eventlistener onclick of submit if answer is correct points + 5 else display try again
 // create display box for correct or incorrect with hide and remove hide on submit if answer is correct or incorrect
 // var addPoints = document.getElementById('points').innerHTML;
-let pointTotal = 0;
-const addPoints = 5;
+// let pointTotal = 0;
+// const addPoints = 5;
 
 
 //grab start button
@@ -111,23 +111,23 @@ const nextButton = document.getElementById('next-butt');
 //grab question container
 const questionContainer = document.getElementById('question-container');
 // need grab question element 
-const questionElement = document.getElementById('question')
+const questionElement = document.getElementById('question');
 
 const restartButton = document.getElementById('restart-butt');
 //need grab answer button
-const answerButtonsElement = document.getElementById('answer-buttons')
+const answerButtonsElement = document.getElementById('answer-buttons');
 
-const wiseAnswer = document.getElementById('wise');
+// const wiseAnswer = document.getElementsByClassName('wise').addEventListener("click", addPoints);
 
-const pointContainer = document.getElementById('point-container');
-
+var score = 0;
+document.getElementById('point-container').innerHTML = score;
 // let answer = document.getElementById('answer');
 
 // global variables, so they can be accessed anywhere in script
 let shuffleQuestions, currentQuestionIndex
 // need to define questions
 // create function to shuffle questions that takes defined questions
-
+// wiseAnswer.addEventListener('click', (pointTotal + 5));
 // event listener to initialize game when start button is clicked
 startButton.addEventListener('click', startGame);
 // how to get questions to appear after start button is clicked and hidden
@@ -140,7 +140,7 @@ nextButton.addEventListener('click', () => {
 function startGame() {
 // console.log('im clicked')
 // hide start button after clicked
-pointTotal = 0;
+// pointTotal.innerHTML = 0;
 startButton.classList.add('hide');
 nextButton.classList.add('hide');
 restartButton.classList.add('hide');
@@ -178,7 +178,9 @@ question.answers.forEach(answer => {
     }
     button.addEventListener('click', selectAnswer)
     answerButtonsElement.appendChild(button) 
-    addPoints
+// if(answer.wrong) {
+//     resetQuestion.eventPreventDefault 
+// }
     
 })
 }
@@ -196,6 +198,15 @@ answerButtonsElement.removeChild
 function selectAnswer(e) {
 const selectedButton = e.target
 const correct = selectedButton.dataset.correct
+const wrong = selectedButton.dataset.wrong
+// if (selectedButton.dataset.wrong) {
+//     alert('Try Again')
+// }
+alert('Correct')
+++score;
+document.getElementById('point-container').innerHTML = score += 5
+
+
 setStatusClass(document.body, correct)
 // need to convert to array to use in for loop
 Array.from(answerButtonsElement.children).forEach(button=> {
@@ -203,14 +214,36 @@ Array.from(answerButtonsElement.children).forEach(button=> {
     // first need to clear any previous status
     setStatusClass(button, button.dataset.correct)
 })
-if (shuffleQuestions.length > currentQuestionIndex + 1) {
+if (shuffleQuestions.length > currentQuestionIndex + 1)  {
     nextButton.classList.remove('hide')
+    // pointContainer = pointContainer + 5
 }else{
     startButton.innerText = 'Restart'
     startButton.classList.remove('hide')
+    alert('Game Over')
+    restartGame()
+    document.getElementById('point-container').innerHTML = 0
+
 }
 nextButton.classList.remove('hide')
 }
+function restartGame (e) {
+
+document.getElementById('point-container').innerHTML = 0
+}
+// function addPoints() {
+//     if (button.dataset.correct = true) {
+//     document.getElementById(pointContainer).innerHTML = pointContainer.innerHTML += 5
+// }}
+// function chooseWise () {
+// wiseAnswer.addEventListener('click', )
+// }
+// if (wiseAnswer.dataset.correct = answer.correct) {
+// pointContainer.innerHTML=pointTotal+5
+// }else{
+//     resetQuestion.event.preventdefault()}
+
+
 // if (anwser.correct === true) {
 //     pointTotal+5
 // }
@@ -230,6 +263,7 @@ function setStatusClass(element, correct) {
     clearStatusClass(element)
     if(correct) {
         element.classList.add('correct')
+        // document.getElementById('point-Container').innerHTML = pointTotal + 5
     }else{
         element.classList.add('wrong')
     }
@@ -239,28 +273,35 @@ function clearStatusClass(element) {
     element.classList.remove('wrong')
 }
 
-function pointAdder(element, correct) {
-document.getElementById('point-container').innerHTML = pointTotal + 5
-}
-wiseAnswer.addEventListener('click', () => {
-    if (wiseAnswer.dataset = wiseAnswer.dataset.correct) {
-pointAdder ()
-    }else{
-//        wiseAnswer.addEventListener('click',function (event) => {
-// event.preventDefault()
-//        })
-    }
-})
+
+// wiseAnswer.addEventListener('click', () => {
+//     if (wiseAnswer.dataset = wiseAnswer.dataset.correct) {
+// pointTotal = pointTotal +5 
+// console.log(pointTotal);
+// // pointContainer.innerHTML.add('Your Score:' + pointAdder)
+//     }else{
+// //        wiseAnswer.addEventListener('click',function (event) => {
+// // event.preventDefault()
+// //        })
+//     }
+// })
+// function pointAdder(element, correct) {
+//     document.getElementById('point-container').innerHTML = pointTotal + 5
+//     }
+//     function pleaseWork(, wise) {
+// pointTotal +=5
+// pointContainer.innerHTML.add('Your Score:' + pointAdder);
+//     }
 // array of questions with array of anwsers for each question
 const questions = [
     {
         question: "In the first episode of 'The Next Generation', what is the name of the omnipotent being that puts the human race on trial?",
         answers: [
-            {text: 'Johnny', correct: false},
+            {text: 'Johnny', wrong: false},
             {text: 'Q', correct: true},
             {text: 'Leah', correct: false},
             {text: 'D', correct: false}
-        ],
+        ]
     },
     {    question: "In 'The Next Generation' who is second in command? ",
         answers: [

@@ -1,6 +1,8 @@
 *, *::before, *::after {
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'krupper', sans-serif;
+    
+
 }
 /* selects all elements before after and makes width and height easier to style */
 /* h1 {
@@ -9,12 +11,13 @@ font-size: 66px;
 color: yellow;
 background-color: black;
 } */
+/* move submit button with id Initialize */
 
 body {
     background-image: url(https://images5.alphacoders.com/421/421700.jpg);
     padding: 0;
     margin: 0;
-    display: grid;
+    display: flex;
     justify-content: center;
     align-items: center;
     width: 80vw;
@@ -32,10 +35,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+   
 }
 .btn-grid {
-    display: flex;
-    grid-template-columns: repeat(2, auto);
+    display: grid;
+    grid-template-columns: (repeat(2, auto));
     gap: 10px;
     margin: 20px 0px;
     background-color: black;
@@ -57,6 +61,7 @@ body {
     padding: 10px 10px;
     background-color: black;
     opacity: 100%;
+    border: none;
 }
 .controls {
     display: flex;
@@ -67,37 +72,42 @@ body {
     display: none;
 }
 h1 {
-display: grid;
+display: flex;
     flex: start;
     color: yellow;
     padding: 0%;
-    margin: 0%;
+    margin-top: 0px;
+    margin-bottom: 1px;
     display: flex;
     justify-content:center;
-    align-items: flex-start;   
+    align-items: center;   
+    width: 300px;
 }
-h2 {
+#point-container {
     color: yellow;
-    padding: 10px;
+    padding: 0px;
     margin: 0%;
     display: flex;
     justify-content: right;
-    align-items:flex-end;
+    float: right;
+    /* align-items:center; */
 }
-#timer {
+
+/* .score-keeper{
     color: yellow;
     font-size: large;
     padding: 10px;
     margin: 0%;
     display: flexbox;
     justify-content: top;
-}
+} */
 .correct{
     background-color: green;
 }
 .wrong {
     background-color: red;
 }
+
 /* Set up border box to make width and height easier to style
 style body remove padding and margin
 make quiz center with display flex, justify center align center
